@@ -6,6 +6,14 @@ Author: Sam Yager -sly4758@rit.edu
 #include <stdlib.h>
 #include <stdio.h>
 
+#define ANSI_COLOR_RED "\x1b[31m"
+#define ANSI_COLOR_YELLOW "\x1b[33m"
+#define ANSI_COLOR_GREEN "\x1b[32m"
+#define ANSI_COLOR_BLUE "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_RESET "\x1b[0m"
+#define ANSI_COLORBACKGROUND "\x1b[47m"
+
 int getIntSide(char side){	
         if (side == 'W' || side == 'w')
                 return 0;
@@ -73,6 +81,45 @@ void getNeighbors(int size, int LRTB[size], int side){
                 LRTB[3] = 0;
         } else 
 		printf("FUCK, GO BACK!");
+}
+
+void copySide(int size, char cube[][size][size], int side, char newSide[][size]){
+	//printf("Copy Bro\n");
+	for (int row = 0; row < size; row++){
+		for (int col = 0; col < size; col++){
+			//printf("%c!=%c\n", cube[side][row][col], newSide[row][col]);
+			cube[side][row][col] = newSide[row][col];
+			//printf("%c==%c\n", cube[side][row][col], newSide[row][col]);
+		}
+	}
+}
+
+void printCube(int size, char cube[6][size][size]){
+	for(int side = 0; side < 6; side++){
+		char value = getCharSide(side);
+		printf("Side: %c\n", value);
+		for(int row = 0; row < size; row++){
+	                for(int col = 0; col < size; col++){
+				if (cube[side][row][col] == 'W'){
+					printf(ANSI_COLOR_RESET);
+				} else if (cube[side][row][col] == 'B'){
+					printf(ANSI_COLOR_BLUE);
+				} else if (cube[side][row][col] == 'G'){
+					printf(ANSI_COLOR_GREEN);
+				} else if (cube[side][row][col] == 'R'){
+					printf(ANSI_COLOR_RED);
+				} else if (cube[side][row][col] == 'Y'){
+					printf(ANSI_COLOR_YELLOW);
+				} else if (cube[side][row][col] == 'O'){
+					printf(ANSI_COLOR_MAGENTA);
+				}
+				printf("%c", cube[side][row][col]);
+				printf(ANSI_COLOR_RESET);
+			}
+			printf("\n");
+		}
+	}
+	printf("\n");
 }
 
 // Turns the cube clockwise on the side specified
@@ -205,29 +252,10 @@ void turn(int size, char cube[][size][size], char side){
 	}	
 }
 
-void copySide(int size, char cube[][size][size], int side, char newSide[][size]){
-	//printf("Copy Bro\n");
-	for (int row = 0; row < size; row++){
-		for (int col = 0; col < size; col++){
-			//printf("%c!=%c\n", cube[side][row][col], newSide[row][col]);
-			cube[side][row][col] = newSide[row][col];
-			//printf("%c==%c\n", cube[side][row][col], newSide[row][col]);
-		}
+void whiteCross(int size, char cube[][size][size], int sizeInstruct, char instruct[sizeInstruct]){
+	while(1 2 && 1 0 && 0 1 && cube[0][2][1]){
+		
 	}
-}
-
-void printCube(int size, char cube[6][size][size]){
-	for(int side = 0; side < 6; side++){
-		char value = getCharSide(side);
-		printf("Side: %c\n", value);
-		for(int row = 0; row < size; row++){
-	                for(int col = 0; col < size; col++){
-				printf("%c", cube[side][row][col]);
-			}
-			printf("\n");
-		}
-	}
-	printf("\n");
 }
 
 int main(){
