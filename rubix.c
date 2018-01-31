@@ -633,7 +633,7 @@ int whiteCross(int size, char cube[][size][size], int size2, char instructions[s
 }
 
 void whiteCorners(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
-	
+    //TODO	
 }
 
 int F2L(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
@@ -668,14 +668,14 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
                     int left = LRTB[0];
                     pullDownLeft(3, cube, getCharSide(checkSide), getCharSide(left));
                     for(int i = 0; i < 8; i++){
-                        if(i % 2 = 0){
+                        if(i % 2 == 0){
                             if(i <= 2){
                                 instructions[instructPlace] = 'T';
                                 instructPlace++;
                             } else {
                                 instructions[instructPlace] = 'T';
                                 instructPlace++;
-                                instructions[instructPlace] = ''';
+                                instructions[instructPlace] = '\'';
                                 instructPlace++;
                             }
                         } else {
@@ -683,14 +683,14 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
                                 instructions[instructPlace] = getInstructSide(left);
                                 instructPlace++;
                                 if(i == 1){
-                                    instructions[instructPlace] = ''';
+                                    instructions[instructPlace] = '\'';
                                     instructPlace++;
                                 }
                             } else {
                                 instructions[instructPlace] = getInstructSide(checkSide);
                                 instructPlace++;
                                 if(i == 7){
-                                    instructions[instructPlace] = ''';
+                                    instructions[instructPlace] = '\'';
                                     instructPlace++;
                                 }
                             }
@@ -701,16 +701,16 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
                     int LRTB[4];
                     getNeighbors(4, LRTB, checkSide);
                     int right = LRTB[1];
-                    pullDownRight(3, cube, side, top);
+                    pullDownRight(3, cube, checkSide, right);
                     for(int i = 0; i < 8; i++){
-                        if(i % 2 = 0){
+                        if(i % 2 == 0){
                             if(i <= 2){
                                 instructions[instructPlace] = 'T';
                                 instructPlace++;
                             } else {
                                 instructions[instructPlace] = 'T';
                                 instructPlace++;
-                                instructiions[instructPlace] = ''';
+                                instructions[instructPlace] = '\'';
                                 instructPlace++;
                             }
                         } else {
@@ -718,14 +718,14 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
                                 instructions[instructPlace] = getInstructSide(right);
                                 instructPlace++;
                                 if(i == 1){
-                                    instructions[instructPlace] = ''';
+                                    instructions[instructPlace] = '\'';
                                     instructPlace++;
                                 }
                             } else {
                                 instructions[instructPlace] = getInstructSide(checkSide);
                                 instructPlace++;
                                 if(i == 7){
-                                    instructions[instructPlace] = ''';
+                                    instructions[instructPlace] = '\'';
                                     instructPlace++;
                                 }
                             }
@@ -749,7 +749,7 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
             instructions[instructPlace] = 'T';
             instructPlace++;
         } else {
-            int yelloGuide[4];
+            int yellowGuide[4];
             getNeighbors(4, yellowGuide, 3);
             char top;
             if(yellowGuide[0] == side){
@@ -769,14 +769,14 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
                 if(getCharSide(LRTB[0]) == top){
                     pullDownLeft(3, cube, getCharSide(side), top);
                     for(int i = 0; i < 8; i++){
-                        if(i % 2 = 0){
+                        if(i % 2 == 0){
                             if(i <= 2){
                                 instructions[instructPlace] = 'T';
                                 instructPlace++;
                             } else {
                                 instructions[instructPlace] = 'T';
                                 instructPlace++;
-                                instructions[instructPlace] = ''';
+                                instructions[instructPlace] = '\'';
                                 instructPlace++;
                             }
                         } else {
@@ -784,14 +784,14 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
                                 instructions[instructPlace] = getInstructSide(top);
                                 instructPlace++;
                                 if(i == 1){
-                                    instructions[instructPlace] = ''';
+                                    instructions[instructPlace] = '\'';
                                     instructPlace++;
                                 }
                             } else {
                                 instructions[instructPlace] = getInstructSide(side);
                                 instructPlace++;
                                 if(i == 7){
-                                    instructions[instructPlace] = ''';
+                                    instructions[instructPlace] = '\'';
                                     instructPlace++;
                                 }
                             }
@@ -800,14 +800,14 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
                 } else if(getCharSide(LRTB[1]) == top){
                     pullDownRight(3, cube, side, top);
                     for(int i = 0; i < 8; i++){
-                        if(i % 2 = 0){
+                        if(i % 2 == 0){
                             if(i <= 2){
                                 instructions[instructPlace] = 'T';
                                 instructPlace++;
                             } else {
                                 instructions[instructPlace] = 'T';
                                 instructPlace++;
-                                instructions[instructPlace] = ''';
+                                instructions[instructPlace] = '\'';
                                 instructPlace++;
                             }
                         } else {
@@ -815,14 +815,14 @@ int F2L(int size, char cube[][size][size], int size2, char instructions[size2], 
                                 instructions[instructPlace] = getInstructSide(top);
                                 instructPlace++;
                                 if(i == 1){
-                                    instructions[instructPlace] = ''';
+                                    instructions[instructPlace] = '\'';
                                     instructPlace++;
                                 }
                             } else {
                                 instructions[instructPlace] = getInstructSide(side);
                                 instructPlace++;
                                 if(i == 7){
-                                    instructions[instructPlace] = ''';
+                                    instructions[instructPlace] = '\'';
                                     instructPlace++;
                                 }
                             }
@@ -857,19 +857,19 @@ void pullDownRight(int size, char cube[][size][size], char side, char right){
     turn(size, cube, side);
 }
 
-void yellowFace(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
+int yellowFace(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
     int numYellow = 0;
-    if(cube[i][0][1] == 'Y'){
+    if(cube[3][0][1] == 'Y'){
         numYellow++;
-    } if(cube[i][1][0] == 'Y'){
+    } if(cube[3][1][0] == 'Y'){
         numYellow++;
-    } if(cube[i][1][2] == 'Y'){
+    } if(cube[3][1][2] == 'Y'){
         numYellow++;
-    } if(cube[i][2][1] == 'Y'){
+    } if(cube[3][2][1] == 'Y'){
         numYellow++;
     }
     if(numYellow < 4){
-        if(numYellow = 0){
+        if(numYellow == 0){
             instructPlace = yellowCrossMaker(3, cube, size2, instructions, instructPlace);
         } 
         if(cube[3][0][1] == 'Y' && cube[3][2][1] == 'Y'){
@@ -893,15 +893,84 @@ void yellowFace(int size, char cube[][size][size], int size2, char instructions[
                 instructions[instructPlace] = '2';
                 instructPlace++;
             } else if (cube[3][1][2] == 'Y' && cube[3][0][1] == 'Y'){
-                inverse(3, cube, 'Y')
+                inverse(3, cube, 'Y');
                 instructions[instructPlace] = 'T';
                 instructPlace++;
-                instructions[instructPlace] = ''';
+                instructions[instructPlace] = '\'';
                 instructPlace++;
             }
             instructPlace = yellowCrossMaker(3, cube, size2, instructions, instructPlace);
         }
     }
+    int numCorners = 0;
+    for(int i = 0; i < 2; i++){
+        for(int j = 0; j < 2; j++){
+            if(cube[3][i  * 2][j * 2] == 'Y'){
+                numCorners++;
+            }
+        }
+    }
+    if(numCorners == 1){
+        while(cube[3][2][0] != 'Y'){
+            turn(3, cube, 'T');       
+            instructions[instructPlace] = 'T';
+            instructPlace++;
+        }
+    } else if(numCorners == 2){
+        if(cube[3][0][0] != 'Y' || cube[3][0][2] != 'Y'){
+            for(int i = 0; i < 3; i++){        
+                turn(3, cube, 'T');       
+                instructions[instructPlace] = 'T';
+                instructPlace++;
+                if(cube[3][0][0] == 'Y' && cube[3][0][2] == 'Y'){
+                    break;
+                }
+            }
+        }
+    } else {
+        return instructPlace;
+    }
+    while(numCorners != 4){
+        instructPlace = yellowFaceMaker(3, cube, size2, instructions, instructPlace);
+        for(int i = 0; i < 2; i++){
+            for(int j = 0; j < 2; j++){
+                if(cube[3][i  * 2][j * 2] == 'Y'){
+                    numCorners++;
+                }
+            }
+        }
+    }
+    return instructPlace;
+}
+
+int yellowFaceMaker(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
+    turn(3, cube, 'R');
+    turn(3, cube, 'Y');
+    inverse(3, cube, 'R');
+    turn(3, cube, 'Y');
+    turn(3, cube, 'R');
+    turnOneEighty(3, cube, 'Y');
+    inverse(3, cube, 'R');
+    instructions[instructPlace] = 'R';
+    instructPlace++;
+    instructions[instructPlace] = 'T';
+    instructPlace++;
+    instructions[instructPlace] = 'R';
+    instructPlace++;
+    instructions[instructPlace] = '\'';
+    instructPlace++;
+    instructions[instructPlace] = 'T';
+    instructPlace++;
+    instructions[instructPlace] = 'R';
+    instructPlace++;
+    instructions[instructPlace] = 'T';
+    instructPlace++;
+    instructions[instructPlace] = '2';
+    instructPlace++;
+    instructions[instructPlace] = 'R';
+    instructPlace++;
+    instructions[instructPlace] = '\'';
+    instructPlace++;
     return instructPlace;
 }
 
@@ -920,20 +989,21 @@ int yellowCrossMaker(int size, char cube[][size][size], int size2, char instruct
     instructPlace++;
     instructions[instructPlace] = 'T';
     instructPlace++;
-    instructions[instructPlace] = ''';
+    instructions[instructPlace] = '\'';
     instructPlace++;
     instructions[instructPlace] = 'R';
     instructPlace++;
-    instructions[instructPlace] = ''';
+    instructions[instructPlace] = '\'';
     instructPlace++;
     instructions[instructPlace] = 'F';
     instructPlace++;
-    instructions[instructPlace] = ''';
+    instructions[instructPlace] = '\'';
     instructPlace++;
+    return instructPlace;
 }
 
 void OOL(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
-	
+	//TODO
 }
 
 
@@ -983,6 +1053,7 @@ int main(){
 	whiteCross(3, cube, 1000, instructions, 0);
 	printf("%s\n", instructions);
 	printCube(3, cube);
-	printf("%d\n", isSolved(SIZE, cube));
+	//printf("%d\n", isSolved(SIZE, cube));
+    printf("%d\n", ((2 / 2) * 2));
 	return 0;
 }
