@@ -14,18 +14,18 @@
 #define SIZE 3
 
 int getIntSide(char side){	
-        if (side == 'W' || side == 'w')
-                return 0;
-        else if (side == 'B' || side == 'b')
-                return 1;
-        else if (side == 'R' || side == 'r')
-                return 2;
-        else if (side == 'Y' || side == 'y')
-                return 3;
-        else if (side == 'G' || side == 'g')
-                return 4;
-        else if (side == 'O' || side == 'o')
-                return 5;
+    if (side == 'W' || side == 'w')
+        return 0;
+    else if (side == 'B' || side == 'b')
+        return 1;
+    else if (side == 'R' || side == 'r')
+        return 2;
+    else if (side == 'Y' || side == 'y')
+        return 3;
+    else if (side == 'G' || side == 'g')
+        return 4;
+    else if (side == 'O' || side == 'o')
+        return 5;
 	else
 		return 6;
 }
@@ -47,6 +47,25 @@ char getCharSide(int side){
                 return 6;	
 }
 
+char getInstructSide(char side){
+    switch(side){
+        case 'W':
+            return 'D';
+        case 'B':
+            return 'F';
+        case 'R':
+            return 'R';
+        case 'Y':
+            return 'T';
+        case 'G':
+            return 'B';
+        case 'O':
+            return 'L';
+        default:
+            return '!';
+    }
+}
+
 void getNeighbors(int size, int LRTB[size], int side){
 	switch(side){
 		case 0:
@@ -56,36 +75,36 @@ void getNeighbors(int size, int LRTB[size], int side){
 			LRTB[3] = 4;
 			break;
 		case 3:
-                	LRTB[0] = 5;
-                	LRTB[1] = 2;
-	                LRTB[2] = 4;
-        	        LRTB[3] = 1;
+            LRTB[0] = 5;
+            LRTB[1] = 2;
+	        LRTB[2] = 4;
+        	LRTB[3] = 1;
 			break;
-       	 	case 1:
-	                LRTB[0] = 5;
-        	        LRTB[1] = 2;
-                	LRTB[2] = 3;
-               		LRTB[3] = 0;
+       	case 1:
+	        LRTB[0] = 5;
+        	LRTB[1] = 2;
+            LRTB[2] = 3;
+     		LRTB[3] = 0;
 			break;
-        	case 4:
-	                LRTB[0] = 2;
-        	        LRTB[1] = 5;
-	                LRTB[2] = 3;
-                	LRTB[3] = 0;
+        case 4:
+	        LRTB[0] = 2;
+        	LRTB[1] = 5;
+	        LRTB[2] = 3;
+            LRTB[3] = 0;
 			break;
-        	case 2:
-	                LRTB[0] = 1;
-        	        LRTB[1] = 4;
-	                LRTB[2] = 3;
-                	LRTB[3] = 0;
+        case 2:
+	        LRTB[0] = 1;
+        	LRTB[1] = 4;
+	        LRTB[2] = 3;
+            LRTB[3] = 0;
 			break;
-        	case 5:
-               		LRTB[0] = 4;
-                	LRTB[1] = 1;
-                	LRTB[2] = 3;
-                	LRTB[3] = 0;
+        case 5:
+            LRTB[0] = 4;
+            LRTB[1] = 1;
+            LRTB[2] = 3;
+            LRTB[3] = 0;
 			break;
-        	default:
+        default:
 			//something has gone awfully wrong
 			printf("FRACK, GO BRACK!");
 	}
@@ -291,7 +310,7 @@ char* solve(int size, char config[][size][size], char instructions[]){
 	}
 }
 
-void whiteCross(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
+int whiteCross(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
 	char steps[50];
 	int stepPlace = 0;
 	for(int s = 0; s < 50; s++){
@@ -347,15 +366,15 @@ void whiteCross(int size, char cube[][size][size], int size2, char instructions[
 						stepPlace++;
 					} else {
 						while(cube[3][0][1] == 'W'){
-                                                        turn(3, cube, 'Y');
-                                                        steps[stepPlace] = 'T';
-                                                        stepPlace++;
-                                                }
-                                                turnOneEighty(3, cube, 'O');
-                                                steps[stepPlace] = 'L';
-                                                stepPlace++;
-                                                steps[stepPlace] = '2';
-                                                stepPlace++;
+                            turn(3, cube, 'Y');
+                            steps[stepPlace] = 'T';
+                            stepPlace++;
+                        }
+                        turnOneEighty(3, cube, 'O');
+                        steps[stepPlace] = 'L';
+                        stepPlace++;
+                        steps[stepPlace] = '2';
+                        stepPlace++;
 					}
 				}
 				if(cube[i][1][2] == 'W'){
@@ -404,8 +423,8 @@ void whiteCross(int size, char cube[][size][size], int size2, char instructions[
 						turnOneEighty(3, cube, 'R');
 						steps[stepPlace] = 'R';
 						stepPlace++;
-                                                steps[stepPlace] = '2';
-                                                stepPlace++;	
+                        steps[stepPlace] = '2';
+                        stepPlace++;	
 					} 
 				}
  				if(cube[i][0][1] == 'W'){
@@ -414,49 +433,49 @@ void whiteCross(int size, char cube[][size][size], int size2, char instructions[
 						steps[stepPlace] = 'F';
 						stepPlace++;
 						inverse(3, cube, 'Y');
-                                                steps[stepPlace] = 'T';
-                                                stepPlace++;
-                                                steps[stepPlace] = 'i';
-                                                stepPlace++;
+                        steps[stepPlace] = 'T';
+                        stepPlace++;
+                        steps[stepPlace] = 'i';
+                        stepPlace++;
 						turn(3, cube, 'R');						
-                                                steps[stepPlace] = 'R';
-                                                stepPlace++;
+                        steps[stepPlace] = 'R';
+                        stepPlace++;
 					} else if(i == 2){
 						turn(3, cube, 'R');
 						steps[stepPlace] = 'R';
 						stepPlace++;
 						inverse(3, cube, 'Y');
-                                                steps[stepPlace] = 'T';
-                                                stepPlace++;
-                                                steps[stepPlace] = 'i';
-                                                stepPlace++;
+                        steps[stepPlace] = 'T';
+                        stepPlace++;
+                        steps[stepPlace] = 'i';
+                        stepPlace++;
 						turn(3, cube, 'G');						
-                                                steps[stepPlace] = 'B';
-                                                stepPlace++;
+                        steps[stepPlace] = 'B';
+                        stepPlace++;
 					} else if(i == 4){
 						turn(3, cube, 'G');
 						steps[stepPlace] = 'B';
 						stepPlace++;
 						inverse(3, cube, 'Y');
-                                                steps[stepPlace] = 'T';
-                                                stepPlace++;
-                                                steps[stepPlace] = 'i';
-                                                stepPlace++;
-						turn(3, cube, 'O');						
-                                                steps[stepPlace] = 'L';
-                                                stepPlace++;
+                        steps[stepPlace] = 'T';
+                        stepPlace++;
+                        steps[stepPlace] = 'i';
+                        stepPlace++;
+    					turn(3, cube, 'O');						
+                        steps[stepPlace] = 'L';
+                        stepPlace++;
 					} else if(i == 5){
 						turn(3, cube, 'O');
 						steps[stepPlace] = 'L';
 						stepPlace++;
 						inverse(3, cube, 'Y');
-                                                steps[stepPlace] = 'T';
-                                                stepPlace++;
-                                                steps[stepPlace] = 'i';
-                                                stepPlace++;
+                        steps[stepPlace] = 'T';
+                        stepPlace++;
+                        steps[stepPlace] = 'i';
+                        stepPlace++;
 						turn(3, cube, 'B');						
-                                                steps[stepPlace] = 'F';
-                                                stepPlace++;
+                        steps[stepPlace] = 'F';
+                        stepPlace++;
 					} else { 
 						while(cube[3][2][1] == 'W'){
 							turn(3, cube, 'Y');
@@ -610,11 +629,313 @@ void whiteCross(int size, char cube[][size][size], int size2, char instructions[
 		instructions[instructPlace] = steps[ele];
 		instructPlace++;
 	}
+    return instructPlace;
 }
 
-void whiteCorners(){
+void whiteCorners(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
 	
 }
+
+int F2L(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
+    while(cube[1][1][0] != cube[1][1][2] || cube[2][1][0] != cube[2][1][2] || cube[4][1][0] != cube[4][1][2] || cube[5][1][0] != cube[5][1][2]){
+        int numYellow = 0;
+        for(int i = 1; i < 6; i++){
+            if(i != 3){
+                if(cube[i][0][1] == 'Y'){
+                    numYellow++;
+                }
+            } else {
+                if(cube[i][0][1] == 'Y'){
+                    numYellow++;
+                }
+                if(cube[i][1][0] == 'Y'){
+                    numYellow++;
+                }
+                if(cube[i][1][2] == 'Y'){
+                    numYellow++;
+                }
+                if(cube[i][2][1] == 'Y'){
+                    numYellow++;
+                }
+            }
+        }
+        if(numYellow == 4){
+            for(int i = 1; i <= 2; i++){
+                int checkSide = i * i;
+                if(cube[checkSide][1][0] != getCharSide(checkSide)){
+                    int LRTB[4];
+                    getNeighbors(4, LRTB, checkSide);
+                    int left = LRTB[0];
+                    pullDownLeft(3, cube, getCharSide(checkSide), getCharSide(left));
+                    for(int i = 0; i < 8; i++){
+                        if(i % 2 = 0){
+                            if(i <= 2){
+                                instructions[instructPlace] = 'T';
+                                instructPlace++;
+                            } else {
+                                instructions[instructPlace] = 'T';
+                                instructPlace++;
+                                instructions[instructPlace] = ''';
+                                instructPlace++;
+                            }
+                        } else {
+                            if(i <= 3){
+                                instructions[instructPlace] = getInstructSide(left);
+                                instructPlace++;
+                                if(i == 1){
+                                    instructions[instructPlace] = ''';
+                                    instructPlace++;
+                                }
+                            } else {
+                                instructions[instructPlace] = getInstructSide(checkSide);
+                                instructPlace++;
+                                if(i == 7){
+                                    instructions[instructPlace] = ''';
+                                    instructPlace++;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                } else if(cube[checkSide][1][2] != getCharSide(checkSide)){
+                    int LRTB[4];
+                    getNeighbors(4, LRTB, checkSide);
+                    int right = LRTB[1];
+                    pullDownRight(3, cube, side, top);
+                    for(int i = 0; i < 8; i++){
+                        if(i % 2 = 0){
+                            if(i <= 2){
+                                instructions[instructPlace] = 'T';
+                                instructPlace++;
+                            } else {
+                                instructions[instructPlace] = 'T';
+                                instructPlace++;
+                                instructiions[instructPlace] = ''';
+                                instructPlace++;
+                            }
+                        } else {
+                            if(i <= 3){
+                                instructions[instructPlace] = getInstructSide(right);
+                                instructPlace++;
+                                if(i == 1){
+                                    instructions[instructPlace] = ''';
+                                    instructPlace++;
+                                }
+                            } else {
+                                instructions[instructPlace] = getInstructSide(checkSide);
+                                instructPlace++;
+                                if(i == 7){
+                                    instructions[instructPlace] = ''';
+                                    instructPlace++;
+                                }
+                            }
+                        }
+                    } 
+                    break; 
+                }
+            }
+        }
+        int side = 1;
+        for(int i = 1; i < 6; i++){
+            if(i != 3){
+                if(cube[i][0][1] == cube[i][1][1]){
+                    break;
+                }
+            }
+            side++;
+        }
+        if(side > 5){
+            turn(3, cube, 'Y');
+            instructions[instructPlace] = 'T';
+            instructPlace++;
+        } else {
+            int yelloGuide[4];
+            getNeighbors(4, yellowGuide, 3);
+            char top;
+            if(yellowGuide[0] == side){
+                top = cube[3][1][0];
+            } else if(yellowGuide[1] == side){
+                top = cube[3][1][2];
+            } else if(yellowGuide[2] == side){
+                top = cube[3][0][1];
+            } else if(yellowGuide[3] == side){
+                top = cube[3][2][1]; 
+            }
+            if(top == 'Y'){
+                continue;
+            } else {
+                int LRTB[4];
+                getNeighbors(4, LRTB, side);
+                if(getCharSide(LRTB[0]) == top){
+                    pullDownLeft(3, cube, getCharSide(side), top);
+                    for(int i = 0; i < 8; i++){
+                        if(i % 2 = 0){
+                            if(i <= 2){
+                                instructions[instructPlace] = 'T';
+                                instructPlace++;
+                            } else {
+                                instructions[instructPlace] = 'T';
+                                instructPlace++;
+                                instructions[instructPlace] = ''';
+                                instructPlace++;
+                            }
+                        } else {
+                            if(i <= 3){
+                                instructions[instructPlace] = getInstructSide(top);
+                                instructPlace++;
+                                if(i == 1){
+                                    instructions[instructPlace] = ''';
+                                    instructPlace++;
+                                }
+                            } else {
+                                instructions[instructPlace] = getInstructSide(side);
+                                instructPlace++;
+                                if(i == 7){
+                                    instructions[instructPlace] = ''';
+                                    instructPlace++;
+                                }
+                            }
+                        }
+                    }
+                } else if(getCharSide(LRTB[1]) == top){
+                    pullDownRight(3, cube, side, top);
+                    for(int i = 0; i < 8; i++){
+                        if(i % 2 = 0){
+                            if(i <= 2){
+                                instructions[instructPlace] = 'T';
+                                instructPlace++;
+                            } else {
+                                instructions[instructPlace] = 'T';
+                                instructPlace++;
+                                instructions[instructPlace] = ''';
+                                instructPlace++;
+                            }
+                        } else {
+                            if(i <= 3){
+                                instructions[instructPlace] = getInstructSide(top);
+                                instructPlace++;
+                                if(i == 1){
+                                    instructions[instructPlace] = ''';
+                                    instructPlace++;
+                                }
+                            } else {
+                                instructions[instructPlace] = getInstructSide(side);
+                                instructPlace++;
+                                if(i == 7){
+                                    instructions[instructPlace] = ''';
+                                    instructPlace++;
+                                }
+                            }
+                        }
+                    } 
+                }
+            }
+        }
+    }
+    return instructPlace;
+}
+
+void pullDownLeft(int size, char cube[][size][size], char side, char left){
+    inverse(size, cube, 'Y');
+    inverse(size, cube, left);
+    inverse(size, cube, 'Y');
+    turn(size, cube, left);  
+    turn(size, cube, 'Y');
+    turn(size, cube, side);
+    turn(size, cube, 'Y');
+    inverse(size, cube, side);  
+}
+
+void pullDownRight(int size, char cube[][size][size], char side, char right){
+    turn(size, cube, 'Y');
+    turn(size, cube, right);
+    turn(size, cube, 'Y');
+    inverse(size, cube, right);
+    inverse(size, cube, 'Y');
+    inverse(size, cube, side);
+    inverse(size, cube, 'Y');
+    turn(size, cube, side);
+}
+
+void yellowFace(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
+    int numYellow = 0;
+    if(cube[i][0][1] == 'Y'){
+        numYellow++;
+    } if(cube[i][1][0] == 'Y'){
+        numYellow++;
+    } if(cube[i][1][2] == 'Y'){
+        numYellow++;
+    } if(cube[i][2][1] == 'Y'){
+        numYellow++;
+    }
+    if(numYellow < 4){
+        if(numYellow = 0){
+            instructPlace = yellowCrossMaker(3, cube, size2, instructions, instructPlace);
+        } 
+        if(cube[3][0][1] == 'Y' && cube[3][2][1] == 'Y'){
+            instructPlace = yellowCrossMaker(3, cube, size2, instructions, instructPlace);
+            instructPlace = yellowCrossMaker(3, cube, size2, instructions, instructPlace); 
+        } else if (cube[3][1][0] == 'Y' && cube[3][1][2] == 'Y'){
+            turn(3, cube, 'Y');
+            instructions[instructPlace] = 'T';
+            instructPlace++;
+            instructPlace = yellowCrossMaker(3, cube, size2, instructions, instructPlace);
+            instructPlace = yellowCrossMaker(3, cube, size2, instructions, instructPlace);
+        } else {
+            if (cube[3][1][0] == 'Y' && cube[3][2][1] == 'Y'){
+                turn(3, cube, 'Y');
+                instructions[instructPlace] = 'T';
+                instructPlace++;
+            } else if (cube[3][2][1] == 'Y' && cube[3][1][2] == 'Y'){
+                turnOneEighty(3, cube, 'Y');
+                instructions[instructPlace] = 'T';
+                instructPlace++;
+                instructions[instructPlace] = '2';
+                instructPlace++;
+            } else if (cube[3][1][2] == 'Y' && cube[3][0][1] == 'Y'){
+                inverse(3, cube, 'Y')
+                instructions[instructPlace] = 'T';
+                instructPlace++;
+                instructions[instructPlace] = ''';
+                instructPlace++;
+            }
+            instructPlace = yellowCrossMaker(3, cube, size2, instructions, instructPlace);
+        }
+    }
+    return instructPlace;
+}
+
+int yellowCrossMaker(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
+    turn(3, cube, 'B');
+    turn(3, cube, 'Y');
+    turn(3, cube, 'R');
+    inverse(3, cube, 'Y');
+    inverse(3, cube, 'R');
+    inverse(3, cube, 'B');
+    instructions[instructPlace] = 'F';
+    instructPlace++;
+    instructions[instructPlace] = 'T';
+    instructPlace++;
+    instructions[instructPlace] = 'R';
+    instructPlace++;
+    instructions[instructPlace] = 'T';
+    instructPlace++;
+    instructions[instructPlace] = ''';
+    instructPlace++;
+    instructions[instructPlace] = 'R';
+    instructPlace++;
+    instructions[instructPlace] = ''';
+    instructPlace++;
+    instructions[instructPlace] = 'F';
+    instructPlace++;
+    instructions[instructPlace] = ''';
+    instructPlace++;
+}
+
+void OOL(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace){
+	
+}
+
 
 int main(){
 	char cube[6][3][3];
