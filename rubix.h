@@ -13,11 +13,13 @@ void copySide(int size, char cube[][size][size], int side, char newSide[][size])
 
 void printCube(int size, char cube[][size][size]);
 
-void turn(int size, char cube[][size][size], char side);
+void turnFace(int size, char cube[][size][size], char side);
 
-void inverse(int size, char cube[][size][size], char side);
+int turn(int size, char cube[][size][size], char side, int size2, char instructions[size2], int instructPlace);
 
-void turnOneEighty(int size, char cube[][size][size], char side);
+int inverse(int size, char cube[][size][size], char side, int size2, char instructions[size2], int instructPlace);
+
+int turnOneEighty(int size, char cube[][size][size], char side, int size2, char instructions[size2], int instructPlacee);
 
 int whiteCross(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace);
 
@@ -27,9 +29,9 @@ int whiteFaceMaker(int size, char cube[][size][size], int size2, char instructio
 
 int F2L(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace);
 
-void pullDownLeft(int size, char cube[][size][size], char side, char left);
+int pullDownLeft(int size, char cube[][size][size], char side, char left, int size2, char instructions[size2], int instructPlace);
 
-void pullDownRight(int size, char cube[][size][size], char side, char right);
+int pullDownRight(int size, char cube[][size][size], char side, char right, int size2, char instructions[size2], int instructPlace);
 
 int yellowFace(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace);
 
@@ -37,4 +39,10 @@ int yellowFaceMaker(int size, char cube[][size][size], int size2, char instructi
 
 int yellowCrossMaker(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace);
 
-int OLL(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace);
+int finish(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace);
+
+int switchCorners(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace);
+
+int finishSide(int size, char cube[][size][size], int size2, char instructions[size2], int instructPlace);
+
+void solve(int size, char cube[][size][size], int size2, char instructions[size2]);
